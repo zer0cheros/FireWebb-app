@@ -5,8 +5,6 @@ require('dotenv').config()
 const server = express()
 const indexRouter = require('./controller/index')
 
-
-
 //view engine
 server.set('view engine', 'ejs')
 server.set('layout', 'layouts/layout')
