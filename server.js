@@ -13,7 +13,7 @@ server.set('layout', 'layouts/layout')
 server.use(expressLayout)
 //server.use(cookieParser)
 server.use(express.static('public'))
-server.use('/', indexRouter)
+server.use('/', indexRouter)   
 
 server.listen(process.env.PORT, ()=>{
     console.log('Connected');
