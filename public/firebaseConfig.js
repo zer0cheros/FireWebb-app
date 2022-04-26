@@ -4,12 +4,12 @@ import { getFirestore } from "https://www.gstatic.com/firebasejs/9.6.10/firebase
 
 
 const firebaseConfig = {
-  apiKey: "AIzaSyB5Cc7Xu86DBJhXfbYdY_CxctK7r30lyFk",
+  apiKey: "",
   authDomain: "firewebb-app.firebaseapp.com",
   projectId: "firewebb-app",
   storageBucket: "firewebb-app.appspot.com",
-  messagingSenderId: "178945067357",
-  appId: "1:178945067357:web:16962261e3b7feb08300b4"
+  messagingSenderId: "",
+  appId: ""
 };
 
 // Initialize Firebase
