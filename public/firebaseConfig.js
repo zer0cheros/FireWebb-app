@@ -20,7 +20,7 @@ const db = getFirestore()
 
 
 // html elements
-
+/*
 const loginForm = document.getElementById('loginForm')
 // lots of code
 
@@ -38,6 +38,6 @@ loginForm.addEventListener('submit', (e)=>{
   })
   
 })
-
+*/
 
 

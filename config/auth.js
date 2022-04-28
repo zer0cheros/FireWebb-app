@@ -2,8 +2,8 @@ const {auth} = require('./FBconfig')
 
 const decodeIDToken = async(req, res, next)=>{
     const header = await req.headers.cookie
-if(header !== 'Bearer null' && req.headers?.cookie?.startsWith('Bearer ')){
-            const idToken = req.headers.cookie.split('Bearer ')[1]
+if(header !== 'Authorization=Bearer%20null' && req.headers?.cookie?.startsWith('Authorization=Bearer%20')){
+            const idToken = req.headers.cookie.split('Authorization=Bearer%20')[1]
             try {
                 const decodedIdToken = await auth.verifyIdToken(idToken)
                 req.currentUser = decodedIdToken
