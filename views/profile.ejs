@@ -1,18 +1,24 @@
-<div class="container-xl">
+<div class="container-xl mt-auto">
     <div class="row">
         <div class="col">
             <h2>Shop</h2>
         </div>
         <div class="col text-center">
             <h2>Profile</h2>
-            <h3 class="py-1">Email: <%= info.email %></h3>
-            <h3 class="py-1">User-ID: <%= info.uid %></h3>
-            <h3 class="py-1">Name: <%= info.name %></h3>
-            <form id="profilePic" action="">
+            <div class="row my-3">
+                <div class="col d-flex flex-column align-items-start">
+                    <h4 class="py-1">Email: <%= info.email %></h4>
+                    <h4 class="py-1">Name: <%= info.name %></h4>
+                </div>
+                <div class="col">
+                    <img class="img-thumbnail" src="<%= info.picture %>">
+                </div>
+            </div> 
+            <form id="profilePic" >
                 <div class="form-control px-5 d-flex flex-column align-items-center">
                     <label class="form-label" for="uploadFile">Upload Profile picture</label>
-                    <input class="form-control" type="file" id="uploadFile">
-                    <button id="uploadBtn" class="btn btn-primary my-3">Upload</button>
+                    <input class="form-control" name="files" type="file" id="uploadFile">
+                    <button type="submit" id="uploadBtn" class="btn btn-primary my-3">Upload</button>
                 </div>
             </form>
             <form action="/profile/save" method="post">
