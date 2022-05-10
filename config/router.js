@@ -1,10 +1,12 @@
 const {auth, db} = require('./FBconfig')
-const { signInWithEmailAndPassword, getAuth } = require('firebase/auth')
+const { signInWithEmailAndPassword, getAuth, signOut } = require('firebase/auth')
+const {getStorage, ref, uploadBytes} = require('firebase/storage')
 const firebase = require('firebase/app')
 const config = require('./config')
 const dbRef = db.ref('info')
 firebase.initializeApp(config)
-const loginLimiter = require('./bruteForceLogin')
+//const loginLimiter = require('./bruteForceLogin')
+
 
 
 
@@ -53,7 +55,7 @@ exports.profile = (req, res)=>{
         //render profile + info from database and userinfo from token
         res.render('profile', {
             info: user,
-            userInfo: userInfo
+            userInfo: userInfo,
         })
     })
     
@@ -71,5 +73,17 @@ exports.profileInfo = (req, res)=>{
 }
 exports.signOut = (req, res)=>{
     res.cookie('Authorization', {maxAge: 0})
+    signOut(getAuth()).then((e)=>{console.log(e);})
     res.redirect('/')
+}
+exports.updateProfilePicture = (req, res)=>{
+    const uid = req.currentUser.uid
+    auth.updateUser(uid, {
+        photoURL: req.body.profileUrl
+    }).then((user)=>{
+        console.log(user);
+    }).catch((err)=>{
+        if(err) throw err
+    })
+    res.redirect('/profile')
 }
