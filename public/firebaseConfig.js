@@ -1,8 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js";
 import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js";
-import { getFirestore } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore.js";
 import { getStorage, uploadBytes, getDownloadURL, ref } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-storage.js";
-
 
 const firebaseConfig = {
   apiKey: "AIzaSyB5Cc7Xu86DBJhXfbYdY_CxctK7r30lyFk",
@@ -18,43 +16,12 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth()
-const db = getFirestore()
-const storage = getStorage()
-const updateProfilePicture = ref(storage, `ProfilePicture`)
+
 
 onAuthStateChanged(auth, (user)=>{
   console.log(user);
 })
 // html elements
-function signOutFB(){
-  signOut(auth).then((e)=>{console.log(e);})
-}
-const uploadPictureForm = document.getElementById('profilePic')
-document.getElementById('uploadFile').addEventListener('change', (e)=>{
-  let profileUrl;
-  e.preventDefault()
-  let files = e.target.files[0]
-  uploadBytes(ref(updateProfilePicture, files.name), files).then((data)=>{
-      console.log('uploaded to storage +' + files.name);
-  getDownloadURL(ref(updateProfilePicture, files.name))
-  .then((url)=>{
-    profileUrl = url
-    console.log(profileUrl);
-    })
-  })
-  uploadPictureForm.addEventListener('submit', (e)=>{
-    e.preventDefault()
-    fetch('/profile/update', {
-      method: 'post',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({profileUrl})
-    }).then(res=>res.json())
-    window.location.href = '/profile'
-  })
-})
-
 /*
 const loginForm = document.getElementById('loginForm')
 
