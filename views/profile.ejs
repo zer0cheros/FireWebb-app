@@ -1,20 +1,28 @@
 <div class="container-xl mt-auto">
     <div class="row">
         <div class="col">
-            <h2>Shop</h2>
+            <div class="container card p-4">
+                <h2 class="fw-bold m-2">Add to Shop</h2>
+                <form id="addProductFrom" method="post">
+                    <div class="form-control px-5 d-flex flex-column align-items-center">
+                        <label class="form-label" for="info">Product name</label>
+                        <input class="form-control" name="product" >
+                        <label class="form-label" for="info">Amout</label>
+                        <input class="form-control" name="amout" >
+                        <label class="form-label" for="files">Upload Product pictures</label>
+                        <input class="form-control" name="files" type="file" id="uploadProductFile">
+                        <button class="btn btn-success my-3">Save Product</button>
+                    </div>
+            </div>
         </div>
-        <div class="col text-center">
-            <h2>Profile</h2>
-            <div class="row my-3">
-                <div class="col d-flex flex-column align-items-start">
-                    <h4 class="py-1">Email: <%= info.email %></h4>
-                    <h4 class="py-1">Name: <%= info.name %></h4>
-                </div>
-                <div class="col">
-                    <img class="img-thumbnail" src="<%= info.picture %>">
-                </div>
-            </div> 
-            <form id="profilePic" >
+        <div class="col card text-center">
+            <h2 class="fw-bold m-2">Profile</h2>
+            <div class="container p-3 text-center">
+                <img width="140px" height="200px" class="img-thumbnail" src="<%= info.picture %>">
+                <h4 class="my-md-2 pb-2">Email: <%= info.email %></h4>
+                <h4 class="my-md-2 pb-2">Name: <%= info.name %></h4>
+            </div>
+            <form class="form-outline mb-4" id="profilePic" >
                 <div class="form-control px-5 d-flex flex-column align-items-center">
                     <label class="form-label" for="uploadFile">Upload Profile picture</label>
                     <input class="form-control" name="files" type="file" id="uploadFile">
@@ -24,14 +32,18 @@
             <form action="/profile/save" method="post">
                 <div class="form-control px-5 d-flex flex-column align-items-center">
                     <label class="form-label" for="info">Write something</label>
-                    <textarea class="form-control" name="info" id="info" cols="30" rows="10"></textarea>
+                    <textarea class="form-control" name="info" id="info" cols="30" rows="5"></textarea>
                     <button class="btn btn-success my-3">Save Something</button>
                 </div>
             </form>
-            <% if(typeof userInfo !== 'undefined'){ %>
-                <%= userInfo.info %> 
-            <% } %>     
+            <div class="container-sm mt-4">
+                <h4><% if(typeof userInfo !== 'undefined'){ %>
+                    <%= userInfo.info %> 
+                <% } %></h4>
+            </div>
+                 
         </div>    
     </div>
 </div>
+<script type="module" src="/profile.js"></script>
 

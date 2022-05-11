@@ -4,6 +4,7 @@ const {getStorage, ref, uploadBytes} = require('firebase/storage')
 const firebase = require('firebase/app')
 const config = require('./config')
 const dbRef = db.ref('info')
+const dbProducts = db.ref('products')
 firebase.initializeApp(config)
 //const loginLimiter = require('./bruteForceLogin')
 
@@ -84,6 +85,25 @@ exports.updateProfilePicture = (req, res)=>{
         console.log(user);
     }).catch((err)=>{
         if(err) throw err
+    }) 
+}
+exports.addProduct = (req, res)=>{
+    const {productUrl, amout, product} = req.body
+    const user = req.currentUser
+    dbProducts.child(product).set({
+        product: product,
+        amout: amout,
+        productUrl: productUrl,
+        uid: user.uid
     })
-    res.redirect('/profile')
+}
+
+exports.products = (req, res)=>{
+    dbProducts.on('value', (snap)=>{
+        console.log(snap.val());
+        res.render('products', {
+            info: snap.val()
+        })
+
+    })
 }

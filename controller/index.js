@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const {index, register, login, createUser, updateProfilePicture, profile, profileInfo, signOut, loginUser} = require('../config/router')
+const {index, register, login, products, createUser, addProduct, updateProfilePicture, profile, profileInfo, signOut, loginUser} = require('../config/router')
 const decodeIDToken = require('../config/auth')
 const {loginLimiter, registerLimiter} = require('../config/bruteForceLogin')
 
@@ -12,7 +12,9 @@ router.get('/login', login)
 router.post('/login', loginLimiter , loginUser)
 router.post('/register', registerLimiter, createUser)
 router.get('/profile',  profile)
+router.get('/products',  products)
 router.post('/profile/save', profileInfo)
 router.post('/profile/update', updateProfilePicture)
+router.post('/profile/addProducts', addProduct)
 router.get('/signout', signOut)
 module.exports = router

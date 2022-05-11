@@ -9,7 +9,6 @@ if(header !== 'Authorization=Bearer%20null' && req.headers?.cookie?.startsWith('
             try {
                 const decodedIdToken = await auth.verifyIdToken(idToken)
                 req['currentUser'] = decodedIdToken
-                console.log(decodedIdToken);
                 console.log('ok');
                 next()
             } catch (error) {
