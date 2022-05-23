@@ -13,11 +13,11 @@ if(header !== 'Authorization=Bearer%20null' && req.headers?.cookie?.startsWith('
                 next()
             } catch (error) {
                 console.log(error);
-                res.render('login')
+                res.redirect('login')
             }
             }else {
                 console.log('no token');
-                res.render('login')
+                res.redirect('login')
             }
 }
 

@@ -21,6 +21,9 @@
                 <img width="140px" height="200px" class="img-thumbnail" src="<%= info.picture %>">
                 <h4 class="my-md-2 pb-2">Email: <%= info.email %></h4>
                 <h4 class="my-md-2 pb-2">Name: <%= info.name %></h4>
+                <% if(info.admin){ %>
+                    <a href="/admin">Admin page</a>
+               <% } %> 
             </div>
             <form class="form-outline mb-4" id="profilePic" >
                 <div class="form-control px-5 d-flex flex-column align-items-center">

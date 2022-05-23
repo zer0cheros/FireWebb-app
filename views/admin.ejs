@@ -1,0 +1,28 @@
+<div class="container-xl mt-auto">
+    <div class="row">
+        <div class="col">
+            <div class="container card p-4">
+                <h1 class="display-4">Get all users</h1>
+            </div>
+        </div>
+        <div class="col card text-center">
+            <h2 class="fw-bold m-2">Profile</h2>
+            <div class="container p-3 text-center">
+                <img width="140px" height="200px" class="img-thumbnail" src="<%= info.picture %>">
+                <h4 class="my-md-2 pb-2">Email: <%= info.email %></h4>
+                <h4 class="my-md-2 pb-2">Name: <%= info.name %></h4>
+                <% if(info.admin){ %>
+                    <a href="/profile">Back to profile</a>
+               <% } %> 
+            </div>
+            <div class="container-sm mt-4">
+                <h4><% if(typeof userInfo !== 'undefined'){ %>
+                    <%= userInfo.info %> 
+                <% } %></h4>
+            </div>
+                 
+        </div>    
+    </div>
+</div>
+<script type="module" src="/admin.js"></script>
+

@@ -1,11 +1,13 @@
 const express = require('express')
 const router = express.Router()
-const {index, register, login, products, createUser, addProduct, updateProfilePicture, profile, profileInfo, signOut, loginUser} = require('../config/router')
+const {index, register, admin, login, products, createUser, addProduct, updateProfilePicture, profile, profileInfo, signOut, loginUser} = require('../config/router')
 const decodeIDToken = require('../config/auth')
 const {loginLimiter, registerLimiter} = require('../config/bruteForceLogin')
 
-router.use('/profile', decodeIDToken)
 
+
+router.use('/profile', decodeIDToken)
+router.use('/admin',decodeIDToken, admin)
 router.get('/', index)   
 router.get('/register', register)
 router.get('/login', login)

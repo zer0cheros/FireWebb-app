@@ -59,9 +59,19 @@ exports.profile = (req, res)=>{
             userInfo: userInfo,
         })
     })
-    
-    
-    
+}
+exports.admin = (req, res)=>{
+    const user = req.currentUser
+    let userInfo;
+    //load from database
+    dbRef.on('value', (snap)=>{
+        userInfo = snap.val()[user.uid]
+        //render profile + info from database and userinfo from token
+        res.render('admin', {
+            info: user,
+            userInfo: userInfo,
+        })
+    })   
 }
 exports.profileInfo = (req, res)=>{
     const info = req.body.info
