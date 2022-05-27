@@ -18,14 +18,17 @@ exports.register = (req, res)=>{
     res.render('register')
 }
 exports.login = (req, res)=>{
-    res.render('login')
+    res.render('login', {
+        error: ' '
+    })
 }
 exports.createUser = (req, res)=>{
     const {email, name, password} = req.body
     auth.createUser({
         displayName: name,
         email: email,
-        password: password
+        password: password,
+        photoURL: 'https://icon-library.com/images/no-profile-pic-icon/no-profile-pic-icon-27.jpg'
     }).then((cred)=>{
         console.log(cred);
     }).catch((err)=>{
@@ -62,16 +65,15 @@ exports.profile = (req, res)=>{
 }
 exports.admin = (req, res)=>{
     const user = req.currentUser
-    let userInfo;
-    //load from database
-    dbRef.on('value', (snap)=>{
-        userInfo = snap.val()[user.uid]
-        //render profile + info from database and userinfo from token
+    let listUsers;
+    auth.listUsers(100).then((list)=>{
+        listUsers = list.users
         res.render('admin', {
             info: user,
-            userInfo: userInfo,
+            listUsers: listUsers
         })
-    })   
+    })
+    
 }
 exports.profileInfo = (req, res)=>{
     const info = req.body.info
@@ -93,9 +95,11 @@ exports.updateProfilePicture = (req, res)=>{
         photoURL: req.body.profileUrl
     }).then((user)=>{
         console.log(user);
+        res.redirect('/profile')
     }).catch((err)=>{
         if(err) throw err
     }) 
+    
 }
 exports.addProduct = (req, res)=>{
     const {productUrl, amout, product} = req.body
@@ -112,8 +116,26 @@ exports.products = (req, res)=>{
     dbProducts.on('value', (snap)=>{
         console.log(snap.val());
         res.render('products', {
-            info: snap.val()
+            products: snap.val()
         })
 
     })
+}
+exports.deleteUsers = (req, res)=>{
+    console.log(req.params.uid);
+    console.log('hej');
+    auth.deleteUser(req.params.uid).then(()=>{
+        console.log('deleted');
+        res.redirect('/admin')
+    }).catch((err)=>{
+        console.log(err);
+    })
+    
+}
+exports.addAdmins = (req, res)=>{
+    const uid = req.params.uid
+    auth.setCustomUserClaims(uid, {admin: true}).then(()=>{
+        console.log('created an new admin');
+        res.redirect('/admin')
+    }) 
 }

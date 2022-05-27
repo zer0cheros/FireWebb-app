@@ -20,9 +20,10 @@ const storage = getStorage()
 const updateProfilePicture = ref(storage, `profilePic`)
 const addProducts = ref(storage, `products`)
 
-const uploadPictureForm = document.getElementById('profilePic')
+const uploadPictureForm = document.getElementById('uploadBtn')
 const uploadProducts = document.getElementById('uploadProductFile')
 const addProductFrom = document.getElementById('addProductFrom')
+console.log(uploadPictureForm);
 document.getElementById('uploadFile').addEventListener('change', (e)=>{
   let profileUrl;
   e.preventDefault()
@@ -35,7 +36,7 @@ document.getElementById('uploadFile').addEventListener('change', (e)=>{
     console.log(profileUrl);
     })
   })
-  uploadPictureForm.addEventListener('submit', (e)=>{
+  uploadPictureForm.addEventListener('click', (e)=>{
     e.preventDefault()
     fetch('/profile/update', {
       method: 'post',
