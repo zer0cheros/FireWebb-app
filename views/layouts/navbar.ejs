@@ -1,4 +1,4 @@
- <nav class="navbar navbar-expand-lg navbar-light bg-white shadow">
+ <nav class="navbar navbar-expand-lg navbar-dark bg-black shadow">
   <div class="container px-4 px-lg-5">
       <a class="navbar-brand" href="/">
         <img width="100" height="auto" src="/img/logo.png" alt="">FireWebb-App
@@ -19,16 +19,33 @@
               </li>   
           </ul>
           <form class="d-flex gap-2">
-              <button class="btn btn-outline-dark" type="submit">
+              <button id="cartBtn" type="button" class="btn btn-outline-light" style="position: relative;" >
                 <i class="bi-cart-fill me-1"></i>
                   Cart
-                  <span class="badge bg-dark text-white ms-1 rounded-pill">0</span> 
+                  <span id="cart" class="badge bg-dark text-white ms-1 rounded-pill">0</span> 
               </button>
-              <button class="btn btn-primary"><a class="text-decoration-none text-dark" href="/login">Login</a> 
+              <!--Modal-->
+<div class="modal" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content modal-lg">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+      </div>
+      <div class="modal-body">
+         
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" id="close">Continue shopping</button>
+        <button type="button" class="btn btn-primary">Checkout</button>
+      </div>
+    </div>
+  </div>
+</div>
+              <button class="btn btn-light" ><a class="text-decoration-none text-dark" href="/login">Login</a> 
               </button>
-              <button class="btn btn-success"><a class="text-decoration-none text-dark" href="/register">Sign Up</a>
+              <button class="btn btn-light"><a class="text-decoration-none text-dark" href="/register">Sign Up</a>
               </button>
-              <button class="btn btn-danger"><a class="text-decoration-none text-dark" onclick="signOutFB()" href="/signout">Sign Out</a>
+              <button class="btn btn-light"><a class="text-decoration-none text-dark" onclick="signOutFB()" href="/signout">Sign Out</a>
               </button>
               <% if(locals.info){ %>
                 <h1>hej</h1>
@@ -37,3 +54,20 @@
       </div>
   </div>
 </nav>
+<!--Modal-->
+<div class="modal" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content modal-lg">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+      </div>
+      <div class="modal-body">
+         
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" id="close">Continue shopping</button>
+        <button type="button" class="btn btn-primary">Checkout</button>
+      </div>
+    </div>
+  </div>
+</div>

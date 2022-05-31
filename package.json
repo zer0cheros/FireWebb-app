@@ -27,6 +27,7 @@
     "nodemon": "^2.0.15",
     "rate-limiter-flexible": "^2.3.6",
     "redis": "^4.0.6",
+    "uuid": "^8.3.2",
     "uuidv4": "^6.2.13"
   }
 }

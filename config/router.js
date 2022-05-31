@@ -5,6 +5,7 @@ const firebase = require('firebase/app')
 const config = require('./config')
 const dbRef = db.ref('info')
 const dbProducts = db.ref('products')
+const { v4: uuidv4 } = require('uuid');
 firebase.initializeApp(config)
 //const loginLimiter = require('./bruteForceLogin')
 
@@ -104,7 +105,7 @@ exports.updateProfilePicture = (req, res)=>{
 exports.addProduct = (req, res)=>{
     const {productUrl, amout, product} = req.body
     const user = req.currentUser
-    dbProducts.child(product).set({
+    dbProducts.child(uuidv4()).set({
         product: product,
         amout: amout,
         productUrl: productUrl,

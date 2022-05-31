@@ -2,17 +2,16 @@
     <% if (products) {  %>
         <% for (const [key, product] of Object.entries(products)) { %>
             <div class="col m-3">
-                <div class="card h-100 shadow-sm rounded p-3">
+                <div class="card h-100 shadow-sm rounded p-3" style="max-width: 350px ;">
                     <div class="card-body ">
                         <div class="text-center">
-                            <h2> Name: <%= product.product %></h2>
+                            <h2 id="product"> Name: <%= product.product %></h2>
                             <h3>Amout: <%= product.amout %></h3>
                         </div>
-                        <img class="card-img-top p-1" src="<%= product.productUrl %> " alt="">
+                        <img id="product_img" class="card-img-top p-1" src="<%= product.productUrl %> " alt="">
                     </div>
-                    
                     <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                        <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Add to cart</a></div>
+                        <div id="add" class="text-center"><a name="<%= key + ", " + product.product + ", " + product.productUrl %>" class="btn btn-outline-dark mt-auto" href="#">Add to cart</a></div>
                     </div>
                 </div>
             </div>    
@@ -21,3 +20,4 @@
         <p>Oops something went wrong</p>
     <% } %>
 </div>
+<script src="/products.js"></script>

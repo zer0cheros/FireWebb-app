@@ -18,10 +18,29 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth()
 
 
-onAuthStateChanged(auth, (user)=>{
-  console.log(user);
-})
 // html elements
+const cart = document.getElementById('cart')
+const cartBtn = document.getElementById('cartBtn')
+const exampleModal = document.getElementById('exampleModal')
+const closeModal = document.getElementById('close')
+let modalBody = document.querySelector('.modal-body')
+let cartAmount = JSON.parse(localStorage.cart)
+console.log(cartAmount);
+cart.innerHTML = cartAmount.length
+cartBtn.addEventListener('click',(e)=>{
+  e.preventDefault()
+  exampleModal.style.display = 'block'
+})
+cartAmount.forEach(item=>{
+  const div = document.createElement('div')
+    div.innerHTML = `<h1>${item.product_name}</h1><br><img style="max-width: 80px; "src="${item.product_img}">`
+    modalBody.appendChild(div)
+})
+closeModal.addEventListener('click',(e)=>{
+  e.preventDefault()
+  exampleModal.style.display = 'none'
+})
+
 /*
 const loginForm = document.getElementById('loginForm')
 
